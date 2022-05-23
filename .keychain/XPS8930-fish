@@ -1,2 +1,0 @@
-set -e SSH_AUTH_SOCK; set -x -U SSH_AUTH_SOCK /tmp/ssh-ZoLsEpcOALZu/agent.34;
-set -e SSH_AGENT_PID; set -x -U SSH_AGENT_PID 35;
