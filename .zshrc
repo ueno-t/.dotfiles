@@ -106,3 +106,6 @@ case ${OSTYPE} in
         alias ls='ls -F --color=auto'
         ;;
 esac
+
+# start ssh-agent
+source $HOME/.keychain/$HOST-sh

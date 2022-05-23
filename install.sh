@@ -54,7 +54,7 @@ deploy() {
 
 initialize() {
   # base
-  sudo apt-get install -y git zsh vim tmux universal-ctags curl
+  sudo apt install -y git zsh vim tmux universal-ctags curl
   # tpm
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   # ping
@@ -62,22 +62,25 @@ initialize() {
 }
 
 docker() {
-  # remove
+  # remove old package
   sudo apt update && sudo apt dist-upgrade
   sudo apt remove docker docker-engine docker.io containerd runc
-  # register
-  sudo apt-get install ca-certificates curl gnupg lsb-release
+  # add docker apt repository
+  sudo apt install -y ca-certificates curl gnupg lsb-release
   curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
   echo   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-  # install
-  sudo apt-get update
-  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+  # install ce package
+  sudo apt update
+  sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
   # modify for debian
   sudo touch /etc/fstab
   sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
   # add docker group
   sudo usermod -aG docker $(whoami)
+  # add ssh-agent
+  sudo apt install -y openssh-client socat keychain
+  /usr/bin/keychain -q --nogui $HOME/.ssh/github_rsa
 }
 command=$1
 [ $# -gt 0 ] && shift

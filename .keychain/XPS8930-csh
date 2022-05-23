@@ -1,0 +1,2 @@
+setenv SSH_AUTH_SOCK /tmp/ssh-ZoLsEpcOALZu/agent.34;
+setenv SSH_AGENT_PID 35;
