@@ -54,7 +54,7 @@ deploy() {
 
 initialize() {
   # base
-  sudo apt-get install -y git zsh vim tmux ctags curl
+  sudo apt-get install -y git zsh vim tmux universal-ctags curl
   # tpm
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
