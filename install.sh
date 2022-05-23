@@ -81,6 +81,8 @@ docker() {
   # add ssh-agent
   sudo apt install -y openssh-client socat keychain
   /usr/bin/keychain -q --nogui $HOME/.ssh/github_rsa
+  echo '/usr/bin/keychain -q --nogui $HOME/.ssh/github_rsa' > $HOME/.zshrc.local
+  echo 'source $HOME/.keychain/$HOST-sh' >> $HOME/.zshrc.local 
 }
 command=$1
 [ $# -gt 0 ] && shift

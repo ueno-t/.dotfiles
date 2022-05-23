@@ -107,6 +107,5 @@ case ${OSTYPE} in
         ;;
 esac
 
-# start ssh-agent
-/usr/bin/keychain -q --nogui $HOME/.ssh/github_rsa
-source $HOME/.keychain/$HOST-sh
+# load local setting
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
