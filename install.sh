@@ -57,6 +57,8 @@ initialize() {
   sudo apt-get install -y git zsh vim tmux universal-ctags curl
   # tpm
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  # ping
+  sudo chmod u+s /bin/ping
 }
 
 docker() {
@@ -74,6 +76,8 @@ docker() {
   # modify for debian
   sudo touch /etc/fstab
   sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+  # add docker group
+  sudo usermod -aG docker $(whoami)
 }
 command=$1
 [ $# -gt 0 ] && shift
@@ -90,6 +94,9 @@ case $command in
     ;;
   init)
     initialize
+    ;;
+  docker)
+    docker
     ;;
   *)
     usage
