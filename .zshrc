@@ -106,8 +106,3 @@ case ${OSTYPE} in
         alias ls='ls -F --color=auto'
         ;;
 esac
-
-# tmux
-if [ -z $TMUX ]; then
-  tmux -2 attach || tmux new-session \; source-file ~/.tmux/session
-fi
