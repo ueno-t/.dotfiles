@@ -15,6 +15,9 @@ setopt auto_pushd
 autoload -Uz colors
 colors
 
+# dir colors
+eval $(dircolors $HOME/.dircolors)
+
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
