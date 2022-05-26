@@ -2,6 +2,4 @@
 	name = ueno-t
 	email = uenotoshiyuki@gmail.com
 [credential]
-	helper = store
-	helper = store
-	helper = store
+	helper = store --file $HOME/.ssh/git-credentials
