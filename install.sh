@@ -76,6 +76,8 @@ docker() {
   sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
   # add docker group
   sudo usermod -aG docker $(whoami)
+  # register docker service to windows startup
+  schtasks.exe /create /tn DockerStart /sc onlogon /tr "'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -Command \"wsl -d Debian -u root -- service docker start\""
 }
 command=$1
 [ $# -gt 0 ] && shift
