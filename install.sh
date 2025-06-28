@@ -74,11 +74,37 @@ docker() {
   # modify for debian
   sudo touch /etc/fstab
   sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
-  # add docker group
-  sudo usermod -aG docker $(whoami)
+}
+
+docker-rootless() {
+  sudo systemctl disable --now docker.service docker.socket
+  sudo apt -y install uidmap dbus-user-session
+  curl -fsSL https://get.docker.com/rootless | sh
+  export PATH=/home/$(whoami)/bin:$PATH
+  export DOCKER_HOST=unix:///run/user/1000/docker.sock
+  systemctl --user restart docker
+  systemctl --user enable docker
+}
+
+register-docker() {
   # register docker service to windows startup
   schtasks.exe /create /tn DockerStart /sc onlogon /tr "'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -Command \"wsl -d Debian -u root -- service docker start\""
+
 }
+
+wslconf() {
+  sudo sh -c "cat > /etc/wsl.conf" <<EOF
+[boot]
+systemd=true
+[network]
+generateResolvConf=false
+EOF
+
+  sudo sh -c "cat > /etc/resolv.conf" <<EOF
+nameserver 1.1.1.1
+EOF
+}
+
 command=$1
 [ $# -gt 0 ] && shift
 
