@@ -88,7 +88,7 @@ docker-rootless() {
 
 register-docker() {
   # register docker service to windows startup
-  schtasks.exe /create /tn DockerStart /sc onlogon /tr "'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -Command \"wsl -d Debian -u root -- service docker start\""
+  schtasks.exe /create /tn DockerStart /sc onlogon /tr "'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -Command \"wsl -d Debian -u ueno-t -- service docker start\""
 
 }
 
@@ -123,6 +123,12 @@ case $command in
     ;;
   docker)
     docker
+    ;;
+  docker-rootless)
+    docker-rootless
+    ;;
+  register-docker)
+    register-docker
     ;;
   *)
     usage
