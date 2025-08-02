@@ -1,2 +1,3 @@
 .cache/*
 .tmux/plugins/
+.netrwhist
