@@ -1,7 +1,5 @@
 [user]
 	name = ueno-t
 	email = uenotoshiyuki@gmail.com
-[credential]
-	helper = store --file $HOME/.ssh/git-credentials
 [core]
 	editor = vim
