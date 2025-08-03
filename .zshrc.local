@@ -1,0 +1,2 @@
+/usr/bin/keychain -q --nogui $HOME/.ssh/id_rsa
+source $HOME/.keychain/$(hostname)-sh
