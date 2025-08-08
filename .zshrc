@@ -28,7 +28,8 @@ setopt hist_ignore_space
 setopt hist_reduce_blanks
 
 # prompt
-PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
+export ARROW_RIGHT=$'\ue0b0'
+PROMPT="%K{cyan}%F{black}[%n@%m]%k%F{cyan}%k${ARROW_RIGHT}%f%k %~
 %# "
 
 # separating
