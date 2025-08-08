@@ -55,6 +55,9 @@ deploy() {
 initialize() {
   # base
   sudo apt install -y git zsh vim tmux universal-ctags curl keychain
+  # locale
+  sed -i '/# ja_JP.UTF-8/s/^.\{2\}//' /etc/locale.gen
+  locale-gen
   # tpm
   git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
   # ping
