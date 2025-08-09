@@ -48,7 +48,6 @@ PROMPT_PROMPT="%K{${PROMPT_PROMPT_BG}}%F{${PROMPT_PROMPT_FG}} %# %k%F{${PROMPT_P
 
 PROMPT="${PROMPT_TIME}${PROMPT_USER}${PROMPT_HOST}${PROMPT_PWD}
 ${PROMPT_PROMPT}"
-#source ~/.prowpt/prowpt.plugin.zsh
 
 # separating
 autoload -Uz select-word-style
