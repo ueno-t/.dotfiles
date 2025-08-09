@@ -6,8 +6,7 @@ export LANG=ja_JP.UTF-8
 bindkey -e
 
 # colors
-autoload -Uz colors
-colors
+autoload -Uz colors && colors
 
 # dir colors
 eval $(dircolors $HOME/.dircolors)
@@ -40,15 +39,13 @@ PROMPT="${PROMPT_TIME}${PROMPT_USER}${PROMPT_HOST}${PROMPT_PWD}
 ${PROMPT_PROMPT} "
 
 # separating
-autoload -Uz select-word-style
-select-word-style default
+autoload -Uz select-word-style && select-word-style default
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
 # complement
 fpath=(~/.zsh/completions $fpath)
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
@@ -70,7 +67,7 @@ zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "+"
 zstyle ':vcs_info:git:*' unstagedstr "!"
 zstyle ':vcs_info:*' formats "${PROMPT_VCS}"
-zstyle ':vcs_info:*' actionformats '${PROMPT_VCS_DIRTY}'
+zstyle ':vcs_info:*' actionformats "${PROMPT_VCS_DIRTY}"
 
 function _update_vcs_info_msg() {
     LANG=en_US.UTF-8 vcs_info
@@ -95,15 +92,11 @@ setopt extended_glob
 # alias
 alias la='ls -a'
 alias ll='ls -l'
-
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-
 alias mkdir='mkdir -p'
-
 alias sudo='sudo '
-
 alias -g L='| less'
 alias -g G='| grep'
 
