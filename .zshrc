@@ -3,13 +3,7 @@ umask 022
 export LANG=ja_JP.UTF-8
 
 # binding
-bindkey -e
-
-# setting
-setopt no_beep
-setopt auto_cd
-setopt auto_pushd
-# setopt correct
+bindkey -v
 
 # colors
 autoload -Uz colors
@@ -22,10 +16,6 @@ eval $(dircolors $HOME/.dircolors)
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-setopt share_history
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
 
 # prompt
 ARROW_RIGHT=$'\ue0b0'
@@ -47,7 +37,7 @@ PROMPT_PWD="%K{${PROMPT_PWD_BG}}%F{${PROMPT_PWD_FG}} %~ %k%F{${PROMPT_PWD_BG}}%k
 PROMPT_PROMPT="%K{${PROMPT_PROMPT_BG}}%F{${PROMPT_PROMPT_FG}} %# %k%F{${PROMPT_PROMPT_BG}}%k${ARROW_RIGHT}%f%k"
 
 PROMPT="${PROMPT_TIME}${PROMPT_USER}${PROMPT_HOST}${PROMPT_PWD}
-${PROMPT_PROMPT}"
+${PROMPT_PROMPT} "
 
 # separating
 autoload -Uz select-word-style
@@ -64,7 +54,6 @@ zstyle ':completion:*' ignore-parents parent pwd ..
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
-
 # vcs_info
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
@@ -77,7 +66,6 @@ PROMPT_VCS_DIRTY_FG="253"
 PROMPT_VCS="%F{${PROMPT_VCS_BG}}${ARROW_LEFT}%k%K{${PROMPT_VCS_BG}}%F{${PROMPT_VCS_FG}} %c%u[%b]%f%k"
 PROMPT_VCS_DIRTY="%F{${PROMPT_VCS_DIRTY_BG}}${ARROW_LEFT}%k%K{${PROMPT_VCS_DIRTY_BG}}%F{${PROMPT_VCS_DIRTY_FG}} [%b|%a]%f%k"
 
-# zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "+"
 zstyle ':vcs_info:git:*' unstagedstr "!"
@@ -92,11 +80,16 @@ add-zsh-hook precmd _update_vcs_info_msg
 
 # options
 setopt print_eight_bit
+setopt no_beep
 setopt no_flow_control
 setopt interactive_comments
+setopt auto_cd
+setopt auto_pushd
 setopt pushd_ignore_dups
-
-# glob
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
 setopt extended_glob
 
 # alias
