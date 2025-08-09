@@ -3,7 +3,7 @@ umask 022
 export LANG=ja_JP.UTF-8
 
 # binding
-bindkey -v
+bindkey -e
 
 # colors
 autoload -Uz colors
