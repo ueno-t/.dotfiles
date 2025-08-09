@@ -70,8 +70,20 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
-zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
-zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
+ARROW_LEFT=$'\ue0b2'
+PROMPT_VCS_BG="148"
+PROMPT_VCS_FG="236"
+PROMPT_VCS_DIRTY_BG="166"
+PROMPT_VCS_DIRTY_FG="253"
+PROMPT_VCS="%F{${PROMPT_VCS_BG}}${ARROW_LEFT}%k%K{${PROMPT_VCS_BG}}%F{${PROMPT_VCS_FG}} %c%u[%b]%f%k"
+PROMPT_VCS_DIRTY="%F{${PROMPT_VCS_DIRTY_BG}}${ARROW_LEFT}%k%K{${PROMPT_VCS_DIRTY_BG}}%F{${PROMPT_VCS_DIRTY_FG}} [%b|%a]%f%k"
+
+# zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "+"
+zstyle ':vcs_info:git:*' unstagedstr "!"
+zstyle ':vcs_info:*' formats "${PROMPT_VCS}"
+zstyle ':vcs_info:*' actionformats '${PROMPT_VCS_DIRTY}'
 
 function _update_vcs_info_msg() {
     LANG=en_US.UTF-8 vcs_info
