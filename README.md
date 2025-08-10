@@ -5,3 +5,4 @@
 - bash -c "$(wget -O - https://raw.github.com/ueno-t/.dotfiles/master/install.sh)" -s all
 - sudo cp -r /mnt/c/Users/%HOMEPATH%/.ssh ~/ && sudo chown -R "$(whoami):$(whoami)" ~/.ssh && chmod 700 .ssh
 - chsh -s $(which zsh)
+- docker login -u ${docker_user_name}
