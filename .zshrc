@@ -16,6 +16,19 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
+# separating
+autoload -Uz select-word-style && select-word-style default
+zstyle ':zle:*' word-chars " /=;@:{},|"
+zstyle ':zle:*' word-style unspecified
+
+# completion
+fpath=(~/.zsh/completions $fpath)
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' ignore-parents parent pwd ..
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+
 # prompt
 ARROW_RIGHT=$'\ue0b0'
 PROMPT_TIME_BG="31"
@@ -37,19 +50,6 @@ PROMPT_PROMPT="%K{${PROMPT_PROMPT_BG}}%F{${PROMPT_PROMPT_FG}} %# %k%F{${PROMPT_P
 
 PROMPT="${PROMPT_TIME}${PROMPT_USER}${PROMPT_HOST}${PROMPT_PWD}
 ${PROMPT_PROMPT} "
-
-# separating
-autoload -Uz select-word-style && select-word-style default
-zstyle ':zle:*' word-chars " /=;@:{},|"
-zstyle ':zle:*' word-style unspecified
-
-# complement
-fpath=(~/.zsh/completions $fpath)
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' ignore-parents parent pwd ..
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
-zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
 # vcs_info
 autoload -Uz vcs_info
