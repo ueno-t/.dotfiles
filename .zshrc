@@ -37,14 +37,14 @@ HOST_BG="239"   && HOST_FG="253"
 PWD_BG="31"     && PWD_FG="253"
 PROMPT_BG="237" && PROMPT_FG="253"
 
-PROMPT_TIME="%K{${TIME_BG}}%F{${TIME_FG}} %* %K{${USER_BG}}%F{${TIME_BG}}${ARROW_RIGHT}%f%k"
-PROMPT_USER="%K{${USER_BG}}%F{${USER_FG}} %n %K{${HOST_BG}}%F{${USER_BG}}${ARROW_RIGHT}%f%k"
-PROMPT_HOST="%K{${HOST_BG}}%F{${HOST_FG}} %m %K{${PWD_BG}}%F{${HOST_BG}}${ARROW_RIGHT}%f%k"
-PROMPT_PWD="%K{${PWD_BG}}%F{${PWD_FG}} %~ %F{${PWD_BG}}%k${ARROW_RIGHT}%f%k"
-PROMPT_PROMPT="%K{${PROMPT_BG}}%F{${PROMPT_FG}} %# %F{${PROMPT_BG}}%k${ARROW_RIGHT}%f%k"
+PROMPT_TIME="%K{$TIME_BG}%F{$TIME_FG} %* %K{$USER_BG}%F{$TIME_BG}$ARROW_RIGHT%f%k"
+PROMPT_USER="%K{$USER_BG}%F{$USER_FG} %n %K{$HOST_BG}%F{$USER_BG}$ARROW_RIGHT%f%k"
+PROMPT_HOST="%K{$HOST_BG}%F{$HOST_FG} %m %K{$PWD_BG}%F{$HOST_BG}$ARROW_RIGHT%f%k"
+PROMPT_PWD="%K{$PWD_BG}%F{$PWD_FG} %~ %F{$PWD_BG}%k$ARROW_RIGHT%f%k"
+PROMPT_PROMPT="%K{$PROMPT_BG}%F{$PROMPT_FG} %# %F{$PROMPT_BG}%k$ARROW_RIGHT%f%k"
 
-PROMPT="${PROMPT_TIME}${PROMPT_USER}${PROMPT_HOST}${PROMPT_PWD}
-${PROMPT_PROMPT} "
+PROMPT="$PROMPT_TIME$PROMPT_USER$PROMPT_HOST$PROMPT_PWD
+$PROMPT_PROMPT "
 
 # vcs_info
 autoload -Uz vcs_info
@@ -53,14 +53,14 @@ autoload -Uz add-zsh-hook
 ARROW_LEFT=$'\ue0b2'
 VCS_BG="148"       && VCS_FG="236"
 VCS_DIRTY_BG="166" && VCS_DIRTY_FG="253"
-PROMPT_VCS="%F{${VCS_BG}}${ARROW_LEFT}%k%K{${VCS_BG}}%F{${VCS_FG}} %c%u[%b]%f%k"
-PROMPT_VCS_DIRTY="%F{${VCS_DIRTY_BG}}${ARROW_LEFT}%k%K{${VCS_DIRTY_BG}}%F{${VCS_DIRTY_FG}} [%b|%a]%f%k"
+PROMPT_VCS="%F{$VCS_BG}$ARROW_LEFT%k%K{$VCS_BG}%F{$VCS_FG} %c%u[%b]%f%k"
+PROMPT_VCS_DIRTY="%F{$VCS_DIRTY_BG}$ARROW_LEFT%k%K{$VCS_DIRTY_BG}%F{$VCS_DIRTY_FG} [%b|%a]%f%k"
 
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "+"
 zstyle ':vcs_info:git:*' unstagedstr "!"
-zstyle ':vcs_info:*' formats "${PROMPT_VCS}"
-zstyle ':vcs_info:*' actionformats "${PROMPT_VCS_DIRTY}"
+zstyle ':vcs_info:*' formats "$PROMPT_VCS"
+zstyle ':vcs_info:*' actionformats "$PROMPT_VCS_DIRTY"
 
 function _update_vcs_info_msg() {
     LANG=en_US.UTF-8 vcs_info
