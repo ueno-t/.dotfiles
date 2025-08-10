@@ -18,6 +18,8 @@ Commands:
   deploy
   init
   docker
+  rootless
+  wslconfig
 EOF
   exit 1
 }
@@ -26,6 +28,9 @@ all() {
   download
   deploy
   initialize
+  docker
+  rootless
+  wslconf
 }
 
 download() {
@@ -56,8 +61,8 @@ initialize() {
   # base
   sudo apt install -y git zsh vim tmux universal-ctags curl keychain
   # locale
-  sed -i '/# ja_JP.UTF-8/s/^.\{2\}//' /etc/locale.gen
-  locale-gen
+  sudo sed -i '/# ja_JP.UTF-8/s/^.\{2\}//' /etc/locale.gen
+  sudo locale-gen
   # zsh
   git clone --depth 1 https://github.com/zsh-users/zsh-completions $HOME/.zsh/completions
   git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/autosuggestions
@@ -82,7 +87,7 @@ docker() {
   sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
 }
 
-docker-rootless() {
+rootless() {
   sudo systemctl disable --now docker.service docker.socket
   sudo apt -y install uidmap dbus-user-session
   curl -fsSL https://get.docker.com/rootless | sh
@@ -90,12 +95,6 @@ docker-rootless() {
   export DOCKER_HOST=unix:///run/user/1000/docker.sock
   systemctl --user restart docker
   systemctl --user enable docker
-}
-
-register-docker() {
-  # register docker service to windows startup
-  schtasks.exe /create /tn DockerStart /sc onlogon /tr "'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -Command \"wsl -d Debian -u ueno-t -- service docker start\""
-
 }
 
 wslconf() {
@@ -130,11 +129,11 @@ case $command in
   docker)
     docker
     ;;
-  docker-rootless)
+  rootless)
     docker-rootless
     ;;
-  register-docker)
-    register-docker
+  wslconf)
+    wslconf
     ;;
   *)
     usage
