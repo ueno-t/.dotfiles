@@ -53,7 +53,7 @@ autoload -Uz add-zsh-hook
 ARROW_LEFT=$'\ue0b2'
 VCS_BG="148"       && VCS_FG="236"
 VCS_DIRTY_BG="166" && VCS_DIRTY_FG="253"
-PROMPT_VCS="%F{$VCS_BG}$ARROW_LEFT%K%kk{$VCS_BG}%F{$VCS_FG} %c%u[%b]%f%k"
+PROMPT_VCS="%F{$VCS_BG}$ARROW_LEFT%K{$VCS_BG}%F{$VCS_FG} %c%u[%b]%f%k"
 PROMPT_VCS_DIRTY="%F{$VCS_DIRTY_BG}$ARROW_LEFT%K{$VCS_DIRTY_BG}%F{$VCS_DIRTY_FG} [%b|%a]%f%k"
 
 zstyle ':vcs_info:git:*' check-for-changes true
