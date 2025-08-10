@@ -1,3 +1,4 @@
 .cache/*
+.zsh/
 .tmux/plugins/
 .netrwhist
