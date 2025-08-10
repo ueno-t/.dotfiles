@@ -1,4 +1,4 @@
 .cache/*
-.zsh/
+.zsh/plugins/
 .tmux/plugins/
 .netrwhist

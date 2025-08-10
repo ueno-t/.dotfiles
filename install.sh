@@ -64,8 +64,8 @@ initialize() {
   sudo sed -i '/# ja_JP.UTF-8/s/^.\{2\}//' /etc/locale.gen
   sudo locale-gen
   # zsh
-  git clone --depth 1 https://github.com/zsh-users/zsh-completions $HOME/.zsh/completions
-  git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/autosuggestions
+  git clone --depth 1 https://github.com/zsh-users/zsh-completions $HOME/.zsh/plugins/completions
+  git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/plugins/autosuggestions
   # tpm
   git clone --depth 1 https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
   # ping
