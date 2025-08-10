@@ -66,7 +66,6 @@ initialize() {
   # zsh
   git clone --depth 1 https://github.com/zsh-users/zsh-completions $HOME/.zsh/completions
   git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/autosuggestions
-  chsh -s $(which zsh)
   # tpm
   git clone --depth 1 https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
   # ping
