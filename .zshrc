@@ -30,7 +30,7 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
 # autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/autosuggestions/zsh-autosuggestions.zsh
 
 # prompt
 ARROW_RIGHT=$'\ue0b0'
