@@ -130,7 +130,7 @@ case $command in
     docker
     ;;
   rootless)
-    docker-rootless
+    rootless
     ;;
   wslconf)
     wslconf
