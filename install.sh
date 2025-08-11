@@ -84,7 +84,7 @@ docker() {
   sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
   # modify for debian
   sudo touch /etc/fstab
-  sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+  # sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
 }
 
 rootless() {
