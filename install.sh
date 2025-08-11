@@ -29,7 +29,6 @@ all() {
   deploy
   initialize
   docker
-  rootless
   wslconf
 }
 
