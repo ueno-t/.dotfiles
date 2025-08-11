@@ -69,6 +69,8 @@ initialize() {
   git clone --depth 1 https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
   # ping
   sudo chmod u+s /bin/ping
+  # chsh
+  chsh -s $(which zsh)
 }
 
 docker() {
