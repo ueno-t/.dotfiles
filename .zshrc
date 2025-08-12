@@ -112,12 +112,12 @@ fi
 # os setting
 case ${OSTYPE} in
     darwin*)
-        #Mac用の設定
+        # for mac
         export CLICOLOR=1
         alias ls='ls -G -F'
         ;;
     linux*)
-        #Linux用の設定
+        # for linux
         alias ls='ls -F --color=auto'
         ;;
 esac

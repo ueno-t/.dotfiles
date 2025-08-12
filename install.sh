@@ -78,7 +78,8 @@ zsh() {
 
 copyrc() {
   # wget
-  wget https://github.com/ueno-t/.dotfiles/blob/master/.zshrc -P ~/
+  wget https://raw.githubusercontent.com/ueno-t/.dotfiles/refs/heads/master/.zshrc -O ~/.zshrc
+  wget https://raw.githubusercontent.com/ueno-t/.dotfiles/refs/heads/master/.dircolors -O ~/.dircolors
 }
 
 chsh() {
