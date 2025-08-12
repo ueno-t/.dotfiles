@@ -14,12 +14,8 @@ Usage:
   $name [command]
 Commands:
   all
-  download
-  deploy
-  init
-  docker
+  devcontainer
   rootless
-  wslconfig
 EOF
   exit 1
 }
@@ -28,8 +24,16 @@ all() {
   download
   deploy
   initialize
-  docker
+  zsh
+  tpm
   wslconf
+  docker
+  chsh
+}
+
+devcontainer() {
+  zsh
+  copyrc
 }
 
 download() {
@@ -62,15 +66,29 @@ initialize() {
   # locale
   sudo sed -i '/# ja_JP.UTF-8/s/^.\{2\}//' /etc/locale.gen
   sudo locale-gen
+  # ping
+  sudo chmod u+s /bin/ping
+}
+
+zsh() {
   # zsh
   git clone --depth 1 https://github.com/zsh-users/zsh-completions $HOME/.zsh/plugins/completions
   git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/plugins/autosuggestions
-  # tpm
-  git clone --depth 1 https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-  # ping
-  sudo chmod u+s /bin/ping
+}
+
+copyrc() {
+  # wget
+  wget https://github.com/ueno-t/.dotfiles/blob/master/.zshrc -P ~/
+}
+
+chsh() {
   # chsh
   chsh -s $(which zsh)
+}
+
+tpm() {
+  # tpm
+  git clone --depth 1 https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 }
 
 docker() {
@@ -115,30 +133,10 @@ command=$1
 [ $# -gt 0 ] && shift
 
 case $command in
-  all)
-    all
-    ;;
-  download)
-    download
-    ;;
-  deploy)
-    deploy
-    ;;
-  init)
-    initialize
-    ;;
-  docker)
-    docker
-    ;;
-  rootless)
-    rootless
-    ;;
-  wslconf)
-    wslconf
-    ;;
-  *)
-    usage
-    ;;
+  all)          all          ;;
+  decvontainer) devcontainer ;;
+  rootless)     rootless     ;;
+  *)            usage        ;;
 esac
 
 exit 0
